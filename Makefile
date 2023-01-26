@@ -6,26 +6,38 @@ ARCH="$(shell uname -m)"
 OS="$(shell uname -s)"
 
 ifeq ($(ARCH), "i386")
-CC=gcc
+CC=@CC@
 endif
 
 ifeq ($(ARCH), "i686")
-CC=gcc
+CC=@CC@
 endif
 
 ifeq ($(ARCH), "x86_64")
-CC=gcc
+CC=@CC@
 ifeq ($(OS), "Darwin")
-CC=gcc -Wno-parentheses-equality -Wno-unused-value -Wno-parentheses -Wno-empty-body
+CC=@CC@ -Wno-parentheses-equality -Wno-unused-value -Wno-parentheses -Wno-empty-body
 endif
 endif
 
 ifeq ($(ARCH), "armv7l")
-CC=gcc
+CC=@CC@
 endif
 
 ifeq ($(ARCH), "aarch64")
-CC=gcc
+CC=@CC@
+endif
+
+ifeq ($(ARCH), "ppc")
+CC=@CC@
+endif
+
+ifeq ($(ARCH), "ppc64")
+CC=@CC@
+endif
+
+ifeq ($(ARCH), "Power Macintosh")
+CC=@CC@
 endif
 
 ifeq ($(CC), "none")
@@ -34,29 +46,22 @@ endif
 
 #------------ Debug value -------------
 DEBUG=yes
-#------------ Debian values -----------
-DESTDIR=
+
+DESTDIR=@DESTROOT@
 VERSION=1.20
 NODEPENDS=
-PKGDIR=$(DESTDIR)/usr/share/algol68toc
-DOCDIR=$(DESTDIR)/usr/share/doc/algol68toc
-BINDIR=$(DESTDIR)/usr/bin
-LIBDIR=$(DESTDIR)/usr/lib
-INFODIR=$(DESTDIR)/usr/share/info
-MANDIR=$(DESTDIR)/usr/share/man/man1
-INCDIR=$(DESTDIR)/usr/include/algol68
-APPDIR=$(DESTDIR)/usr/share/applications
 
 #------------ macOS values -------------
 ifeq ($(OS), "Darwin")
-PKGDIR=$(DESTDIR)/usr/local/share/algol68toc
-DOCDIR=$(DESTDIR)/usr/local/share/doc/algol68toc
-BINDIR=$(DESTDIR)/usr/local/bin
-LIBDIR=$(DESTDIR)/usr/local/lib
-INFODIR=$(DESTDIR)/usr/local/share/info
-MANDIR=$(DESTDIR)/usr/local/share/man/man1
-INCDIR=$(DESTDIR)/usr/local/include/algol68
-APPDIR=$(DESTDIR)/usr/local/share/applications
+PREFIX=@PREFIX@
+PKGDIR=$(DESTDIR)$(PREFIX)/share/algol68toc
+DOCDIR=$(DESTDIR)$(PREFIX)/share/doc/algol68toc
+BINDIR=$(DESTDIR)$(PREFIX)/bin
+LIBDIR=$(DESTDIR)$(PREFIX)/lib
+INFODIR=$(DESTDIR)$(PREFIX)/share/info
+MANDIR=$(DESTDIR)$(PREFIX)/share/man/man1
+INCDIR=$(DESTDIR)$(PREFIX)/include/algol68
+APPDIR=$(DESTDIR)$(PREFIX)/share/applications
 endif
 
 #------------- Absolute directories ------------
@@ -88,9 +93,9 @@ A68_LIB:=$(ACD)
 
 #------------ Flags ------------
 ifeq ($(DEBUG),no)
-override CFLAGS=-O0
+override CFLAGS=@ARCHFLAGS@ -O0
 else
-override CFLAGS=-O0 -g
+override CFLAGS=@ARCHFLAGS@ -O0 -g
 endif
 NOR=$(CFLAGS) $(INCS)
 CTSTAR=59LR

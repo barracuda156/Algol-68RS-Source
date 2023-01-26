@@ -15,19 +15,28 @@ ECHO=":"
 
 case $ARCH in
     "i386")
-	CC="gcc"
+	CC=@CC@
 	;;
     "i686")
-	CC="gcc"
+	CC=@CC@
 	;;
     "x86_64")
-	CC="gcc"
+	CC=@CC@
 	;;
     "armv7l")
-	CC="gcc"
+	CC=@CC@
 	;;
     "aarch64")
-	CC="gcc"
+	CC=@CC@
+	;;
+    "ppc")
+	CC=@CC@
+	;;
+    "ppc64")
+	CC=@CC@
+	;;
+    "Power Macintosh")
+	CC=@CC@
 	;;
     *)
 	echo "Architecture not supported"
@@ -36,9 +45,10 @@ case $ARCH in
 esac
 
 if [ "$OS" = "Darwin" ]; then
-PROGRAM=/usr/local/bin/a68toc
-ROOT=/usr/local/share/algol68toc
-INCLUDES="-I/usr/local/include/algol68 -I/usr/include"
+PREFIX=@PREFIX@
+PROGRAM=${PREFIX}/bin/a68toc
+ROOT=${PREFIX}/share/algol68toc
+INCLUDES="-I${PREFIX}/include/algol68 -I${PREFIX}/include"
 else
 PROGRAM=/usr/bin/a68toc
 ROOT=/usr/share/algol68toc
@@ -48,7 +58,7 @@ fi
 A68DIRS="-dir ${ROOT}"
 CHECK=-DA68_CHECK
 DEBUG=
-DESTDIR=${HOME}/lib
+DESTDIR=${PREFIX}/lib
 LIBRARIES=-L${DESTDIR}
 MUNGE=n
 UNAME="-uname seedfile"
