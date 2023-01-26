@@ -1000,18 +1000,6 @@ EXTERN_C_BEGIN
 
 # if defined(POWERPC)
 #   define MACH_TYPE "POWERPC"
-#   ifdef MACOS
-#     define ALIGNMENT 2  /* Still necessary?  Could it be 4?   */
-#     ifndef __LOWMEM__
-        EXTERN_C_END
-#       include <LowMem.h>
-        EXTERN_C_BEGIN
-#     endif
-#     define OS_TYPE "MACOS"
-                        /* see os_dep.c for details of global data segments. */
-#     define STACKBOTTOM ((ptr_t)LMGetCurStackBase())
-#     define DATAEND  /* not needed */
-#   endif
 #   ifdef LINUX
 #     if defined(__powerpc64__)
 #       define ALIGNMENT 8
