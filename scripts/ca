@@ -42,9 +42,10 @@ case $ARCH in
 esac
 
 if [ "$OS" = "Darwin" ]; then
-PROGRAM=/usr/local/bin/a68toc
-ROOT=/usr/local/share/algol68toc
-INCLUDES="-I/usr/local/include/algol68 -I/usr/include"
+PREFIX=/usr/local
+PROGRAM=${PREFIX}/bin/a68toc
+ROOT=${PREFIX}/share/algol68toc
+INCLUDES="-I${PREFIX}/include/algol68 -I/usr/include"
 else
 PROGRAM=/usr/bin/a68toc
 ROOT=/usr/share/algol68toc

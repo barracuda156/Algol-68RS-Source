@@ -84,7 +84,7 @@ This install the following(*):
          resetseed
 	 ca
 
-(*) on macOS /usr/local/ is used in place of /usr
+(*) on macOS /usr/local or /opt/local is used in place of /usr
 
 Compile a test program with
 

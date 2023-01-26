@@ -42,10 +42,24 @@ endif
 
 #------------ Debug value -------------
 DEBUG=yes
-#------------ Debian values -----------
+
 DESTDIR=
 VERSION=1.20
 NODEPENDS=
+
+#------------ macOS values -------------
+ifeq ($(OS), "Darwin")
+PREFIX=/usr/local
+PKGDIR=$(DESTDIR)$(PREFIX)/share/algol68toc
+DOCDIR=$(DESTDIR)$(PREFIX)/share/doc/algol68toc
+BINDIR=$(DESTDIR)$(PREFIX)/bin
+LIBDIR=$(DESTDIR)$(PREFIX)/lib
+INFODIR=$(DESTDIR)$(PREFIX)/share/info
+MANDIR=$(DESTDIR)$(PREFIX)/share/man/man1
+INCDIR=$(DESTDIR)$(PREFIX)/include/algol68
+APPDIR=$(DESTDIR)$(PREFIX)/share/applications
+else
+#--------- Debian etc. values ----------
 PKGDIR=$(DESTDIR)/usr/share/algol68toc
 DOCDIR=$(DESTDIR)/usr/share/doc/algol68toc
 BINDIR=$(DESTDIR)/usr/bin
@@ -54,17 +68,6 @@ INFODIR=$(DESTDIR)/usr/share/info
 MANDIR=$(DESTDIR)/usr/share/man/man1
 INCDIR=$(DESTDIR)/usr/include/algol68
 APPDIR=$(DESTDIR)/usr/share/applications
-
-#------------ macOS values -------------
-ifeq ($(OS), "Darwin")
-PKGDIR=$(DESTDIR)/usr/local/share/algol68toc
-DOCDIR=$(DESTDIR)/usr/local/share/doc/algol68toc
-BINDIR=$(DESTDIR)/usr/local/bin
-LIBDIR=$(DESTDIR)/usr/local/lib
-INFODIR=$(DESTDIR)/usr/local/share/info
-MANDIR=$(DESTDIR)/usr/local/share/man/man1
-INCDIR=$(DESTDIR)/usr/local/include/algol68
-APPDIR=$(DESTDIR)/usr/local/share/applications
 endif
 
 #------------- Absolute directories ------------
