@@ -105,7 +105,7 @@
 */
 
 #if !defined(A_GC_METHOD)
-#if     defined(__LP64__) || defined(__x86_64__) || defined(__amd64__) || defined(__aarch64__)
+#if     defined(__LP64__) || defined(__x86_64__) || defined(__amd64__) || defined(__aarch64__) || defined(__ppc64__)
 #       define  MAX_CACHE 0                /* disable caching of small allocations, leave to BDW */
 #       define  A_BDW_GARBAGE_COLLECT
 #       define  A_GC_METHOD BDW
@@ -117,7 +117,7 @@
 **
 */
 #if !defined(A_GC_METHOD)
-#if     defined(__i386__) || defined(__i686__) || defined(__arm__)
+#if     defined(__i386__) || defined(__i686__) || defined(__arm__) || defined(__ppc__)
 #       define A_GARBAGE_COLLECT
 #       define A_GC_METHOD A68TOC
 #endif
@@ -156,7 +156,7 @@
 ** Check we have a GC method selected
 */
 #if !defined(A_GC_METHOD)
-#error Unable to determine garnage collection method in Aalloc.h
+#error Unable to determine garbage collection method in Aalloc.h
 #endif
 
 /*

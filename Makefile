@@ -28,6 +28,14 @@ ifeq ($(ARCH), "aarch64")
 CC=gcc
 endif
 
+ifeq ($(ARCH), "ppc")
+CC=gcc
+endif
+
+ifeq ($(ARCH), "ppc64")
+CC=gcc
+endif
+
 ifeq ($(CC), "none")
 $(error Cannot determine C compiler to use)
 endif

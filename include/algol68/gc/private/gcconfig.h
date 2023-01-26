@@ -439,7 +439,7 @@ EXTERN_C_BEGIN
 #   define mach_type_known
 # endif
 # if defined(DARWIN)
-#   if defined(__ppc__)  || defined(__ppc64__)
+#   if defined(__ppc__) || defined(__ppc64__)
 #    define POWERPC
 #    define mach_type_known
 #   elif defined(__x86_64__) || defined(__x86_64)
@@ -742,10 +742,10 @@ EXTERN_C_BEGIN
                     /*                  (LINUX & MSWINCE)               */
                     /*             X86_64     ==> AMD x86-64            */
                     /*             POWERPC    ==> IBM/Apple PowerPC     */
-                    /*                  (MACOS(<=9),DARWIN(incl.MACOSX),*/
+                    /*                  (DARWIN (incl. MacOS X < 10)),  */
                     /*                   LINUX, NETBSD, AIX, NOSYS      */
                     /*                   variants)                      */
-                    /*                  Handles 32 and 64-bit variants. */
+                    /*                  Handles 32- and 64-bit variants */
                     /*             CRIS       ==> Axis Etrax            */
                     /*             M32R       ==> Renesas M32R          */
                     /*             HEXAGON    ==> Qualcomm Hexagon      */

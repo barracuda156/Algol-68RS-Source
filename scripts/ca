@@ -29,6 +29,12 @@ case $ARCH in
     "aarch64")
 	CC="gcc"
 	;;
+    "ppc")
+	CC="gcc"
+	;;
+    "ppc64")
+	CC="gcc"
+	;;
     *)
 	echo "Architecture not supported"
 	exit 1

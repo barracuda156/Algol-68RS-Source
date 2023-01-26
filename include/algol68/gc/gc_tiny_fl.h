@@ -50,7 +50,7 @@
         || defined(__s390x__) \
         || (defined(__x86_64__) && !defined(__ILP32__)) \
         || defined(__alpha__) || defined(__powerpc64__) \
-        || defined(__arch64__)
+        || defined(__arch64__) || defined(__ppc64__)
 #  define GC_GRANULE_BYTES 16
 #  define GC_GRANULE_WORDS 2
 # else
